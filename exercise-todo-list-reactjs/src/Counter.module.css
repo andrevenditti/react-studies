@@ -1,0 +1,28 @@
+.counter {
+  margin-top: 6.4rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.counter strong {
+  font-size: 1.4rem;
+  margin-right: 0.8rem;
+}
+
+.counter span {
+  color: var(--gray-100);
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: var(--gray-400);
+  padding: 0.2rem 0.8rem;
+  border-radius: 120px;
+}
+
+.tasksCount strong {
+  color: var(--blue-500);
+}
+
+.tasksCompleted strong {
+  color: var(--purple-500);
+}
