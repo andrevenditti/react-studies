@@ -1,16 +1,16 @@
 
 import styles from "./Counter.module.css"
 
-export default function Counter() {
+export default function Counter({createdTodo}) {
   return(
     <div className={styles.counter}>
       <div className={styles.tasksCount}>
         <strong>Tarefas criadas</strong>
-        <span>0</span>
+        <span>{createdTodo}</span>
       </div>
       <div className={styles.tasksCompleted}>
         <strong>Concluídas</strong>
-        <span>0 de 1</span>
+        <span>0 de {createdTodo}</span>
       </div>         
     </div>
   )

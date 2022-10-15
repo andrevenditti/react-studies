@@ -1,10 +1,56 @@
+.tasks {
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  margin-top: 1.2rem;
+  width: 100%;
+  min-height: 5.4rem;
+  background: var(--gray-500);
+
+  padding: 1.6rem;
+  
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tasks:first-child {
+  margin-top: 2.4rem;
+}
+
+.tasks .content{
+  flex: 1;
+  color: var(--gray-100);
+  font-size: 1.4rem;
+}
+
+.contentCompleted {
+  flex: 1;
+  font-size: 1.4rem;
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
+
+.tasks button {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: var(--gray-300);
+
+  transition: 0.1s color;
+}
+
+.tasks button:hover {
+  color: var(--red-500);
+
+}
 
 input[type=checkbox] {
   position: relative;
   cursor: pointer;
-  background-color: transparent;
   border: 0;
   margin-right: 1.2rem;
+  height: 1px;
 }
 input[type=checkbox]:before {
   content: "";

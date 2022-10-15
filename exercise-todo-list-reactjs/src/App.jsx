@@ -1,19 +1,26 @@
 import Header from "./Header"
 import Form from "./Form"
 import Counter from "./Counter"
-import Tasks from "./Tasks"
+import Todo from "./Todo"
 
 import styles from "./App.module.css"
 import { useState } from "react"
 
-import {v4 as uuidv4} from "uuid"
+import { v4 as uuidv4} from "uuid"
 
 
 export default function App() {
 
-  const [tasks, setTasks] = useState([])
+  const [todo, setTodos] = useState([])
 
-  const [newTask, setNewTask] = useState('')
+  const [newTodo, setNewTodo] = useState('')
+
+  function deleteTodo(todoToDelete) {
+    const newTodoValue = todo.filter(todo => {
+      return todo !== todoToDelete;
+    })
+    setTodos(newTodoValue)
+  }
 
   return (
     <div>
@@ -22,20 +29,25 @@ export default function App() {
       <div className={styles.container}>
         <main className={styles.main}>
           <Form 
-            tasks={tasks}
-            tasksList={setTasks}
-            newTask={newTask}
-            setNewTask={setNewTask}
+            todo={todo}
+            todoList={setTodos}
+            newTodo={newTodo}
+            setNewTodo={setNewTodo}
           />
         </main>
-        <Counter />
+
+        <Counter
+          createdTodo={todo.length}
+        />
 
         <footer>
-          {tasks.map(task => {
+          {todo.map(todo => {
             return(
-              <Tasks
+              <Todo
                 key={uuidv4()}
-                content={task}
+                content={todo}
+                todo={todo}
+                onDeleteTodo={deleteTodo}
               />
             )
           })}

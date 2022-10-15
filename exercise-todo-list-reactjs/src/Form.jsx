@@ -2,25 +2,26 @@ import { PlusCircle } from "phosphor-react"
 import { useState } from "react"
 import styles from "./Form.module.css"
 
-export default function Form({tasks, tasksList, newTask, setNewTask}){
+export default function Form({todo, todoList, newTodo, setNewTodo}){
 
   function handleCreateNewTask (event){
+    
     event.preventDefault();
-    tasksList([...tasks, newTask])
-    setNewTask("")
+    todoList([...todo, newTodo])
+    setNewTodo("")
   }
 
   function handleNewTaskChange(event) {
-    setNewTask(event.target.value)
+    setNewTodo(event.target.value)
   }
 
   return(
     <form onSubmit={handleCreateNewTask}>
       <input 
         type="text"
-        name="task"
+        name="todoInput"
         placeholder="Adicione uma nova tarefa" 
-        value={newTask}
+        value={newTodo}
         onChange={handleNewTaskChange}
         required
       />
