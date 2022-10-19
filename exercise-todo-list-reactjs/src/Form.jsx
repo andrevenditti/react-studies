@@ -1,28 +1,30 @@
 import { PlusCircle } from "phosphor-react"
 import { useState } from "react"
-import styles from "./Form.module.css"
+import { v4 as uuidv4, v4} from "uuid"
+import "./Form.module.css"
 
-export default function Form({todo, todoList, newTodo, setNewTodo}){
+export default function Form({createNewTodo}){
+  
+  const [newTodo, setNewTodo] = useState('')
 
-  function handleCreateNewTask (event){
-    
+  function handleCreateNewTodo (event){
     event.preventDefault();
-    todoList([...todo, newTodo])
+    createNewTodo({id: uuidv4(), title: newTodo, completed: false})
     setNewTodo("")
   }
-
-  function handleNewTaskChange(event) {
+  
+  function handleNewTodoChange(event) {
     setNewTodo(event.target.value)
   }
 
   return(
-    <form onSubmit={handleCreateNewTask}>
+    <form onSubmit={handleCreateNewTodo}>
       <input 
         type="text"
         name="todoInput"
         placeholder="Adicione uma nova tarefa" 
         value={newTodo}
-        onChange={handleNewTaskChange}
+        onChange={handleNewTodoChange}
         required
       />
       <button type="submit" title="Adicionar tarefa">

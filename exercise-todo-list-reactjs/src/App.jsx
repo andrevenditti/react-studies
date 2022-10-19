@@ -6,22 +6,32 @@ import Todo from "./Todo"
 import styles from "./App.module.css"
 import { useState } from "react"
 
-import { v4 as uuidv4} from "uuid"
-
-
 export default function App() {
 
-  const [todo, setTodos] = useState([])
-
-  const [newTodo, setNewTodo] = useState('')
+  const [todos, setTodos] = useState([])
 
   function deleteTodo(todoToDelete) {
-    const newTodoValue = todo.filter(todo => {
-      return todo !== todoToDelete;
+    const newTodoValue = todos.filter(todo => {
+      return todo.id !== todoToDelete;
     })
     setTodos(newTodoValue)
   }
 
+  function createNewTodo(todo) {
+    setTodos((prevState) =>[...prevState, todo])
+  }
+
+  function toggleCompletedTodo(id){
+    setTodos(prevState => {
+      const indexOfTodo = prevState.findIndex(todo => todo.id === id)
+      return prevState.map(todo => todo.id === id ? {...todo, completed: !prevState[indexOfTodo].completed} : todo)
+    })
+  }
+
+  const completedTodos = todos.reduce((acc, todo) => {
+    return todo.completed ? acc + 1 : acc;
+  }, 0)
+  
   return (
     <div>
       <Header />
@@ -29,25 +39,23 @@ export default function App() {
       <div className={styles.container}>
         <main className={styles.main}>
           <Form 
-            todo={todo}
-            todoList={setTodos}
-            newTodo={newTodo}
-            setNewTodo={setNewTodo}
+            createNewTodo={createNewTodo}
           />
         </main>
 
         <Counter
-          createdTodo={todo.length}
+          todosCount={todos.length}
+          createdTodo={completedTodos}
         />
 
         <footer>
-          {todo.map(todo => {
+          {todos.map(todo => {
             return(
               <Todo
-                key={uuidv4()}
-                content={todo}
-                todo={todo}
-                onDeleteTodo={deleteTodo}
+              key={todo.id}
+              todo={todo}
+              onDeleteTodo={deleteTodo}
+              toggleCompletedTodo={toggleCompletedTodo}
               />
             )
           })}
