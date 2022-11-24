@@ -32,7 +32,8 @@ export const CartContainer = styled.div`
   align-items: center;
   gap: 1.2rem;
 `
-export const Cart = styled.div`
+export const Cart = styled.a`
+  cursor: pointer;
   border-radius: 6px;
   padding: 8px;
   background: ${(props) => props.theme['yellow-light']};

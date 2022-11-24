@@ -165,11 +165,12 @@ export const PaymentOption = styled.div`
     }
   }
 `
+
 export const ColumnTwo = styled.div`
   width: 42%;
 `
 
-export const CoffeeSelected = styled.div`
+export const CoffeeSelectedContainer = styled.div`
   margin-top: 15px;
   padding: 40px;
   border-radius: 6px 44px;
@@ -249,27 +250,6 @@ export const CoffeQuantity = styled.div`
     text-align: center;
     width: 20px;
     background: transparent;
-  }
-`
-
-export const TotalOrders = styled.div`
-  margin-top: 24px;
-
-  div {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.4rem;
-
-    :not(:last-child) {
-      padding-bottom: 12px;
-    }
-
-    :last-child {
-      font-size: 2rem;
-      font-weight: bold;
-      color: ${(props) => props.theme['base-subtitle']};
-      padding-bottom: 24px;
-    }
   }
 `
 

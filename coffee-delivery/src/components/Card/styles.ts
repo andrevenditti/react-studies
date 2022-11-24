@@ -1,23 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  max-width: 1120px;
-  margin: 0 auto;
-`
-export const TitleProducts = styled.h2`
-  font-size: 3.2rem;
-  line-height: 130%;
-  color: ${(props) => props.theme['base-subtitle']};
-  margin-bottom: 5.4rem;
-`
-
-export const CardAmount = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3.2rem;
-`
-
 export const CardContent = styled.li`
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 36px;

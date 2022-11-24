@@ -1,15 +1,11 @@
-import expressoTradicional from '../../assets/Home/Coffe/expressoTradicional.png'
-// import expressoAmericano from '../../assets/Home/Coffe/expressoAmericano.png'
+import { useCoffeeDeliveryCart } from '../../context/CoffeeDeliveryContext'
 
 import {
   Bank,
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Minus,
   Money,
-  Plus,
-  Trash,
 } from 'phosphor-react'
 
 import {
@@ -28,14 +24,15 @@ import {
   PaymentContainer,
   PaymentOption,
   ColumnTwo,
-  CoffeeSelected,
-  CoffeeCard,
-  CoffeQuantity,
-  TotalOrders,
+  CoffeeSelectedContainer,
   ButtonConfirm,
 } from './styles'
+import { CoffeeSelected } from './CoffeeSelected'
+import { TotalOrders } from './TotalOrders'
 
 export function Checkout() {
+  const { cartItems } = useCoffeeDeliveryCart()
+
   return (
     <Container>
       <ColumnOne>
@@ -89,65 +86,19 @@ export function Checkout() {
       </ColumnOne>
       <ColumnTwo>
         <TitleXs>Cafés selecionados</TitleXs>
-        <CoffeeSelected>
+        <CoffeeSelectedContainer>
           <div>
-            <CoffeeCard>
-              <div>
-                <img src={expressoTradicional} alt="" />
-                <div>
-                  <span>Expresso Tradicional</span>
-                  <div>
-                    <CoffeQuantity>
-                      <Minus size={16} />
-                      <span>1</span>
-                      <Plus size={16} />
-                    </CoffeQuantity>
-                    <button>
-                      <Trash size={16} />
-                      REMOVER
-                    </button>
-                  </div>
+            {cartItems.map((coffee) => {
+              return (
+                <div key={coffee.id}>
+                  <CoffeeSelected {...coffee} />
                 </div>
-              </div>
-              <strong>R$ 9,90</strong>
-            </CoffeeCard>
-            <CoffeeCard>
-              <div>
-                <img src={expressoTradicional} alt="" />
-                <div>
-                  <span>Expresso Tradicional</span>
-                  <div>
-                    <CoffeQuantity>
-                      <Minus size={16} />
-                      <span>1</span>
-                      <Plus size={16} />
-                    </CoffeQuantity>
-                    <button>
-                      <Trash size={16} />
-                      REMOVER
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <strong>R$ 9,90</strong>
-            </CoffeeCard>
+              )
+            })}
+            <TotalOrders />
           </div>
-          <TotalOrders>
-            <div>
-              <p>Total de itens</p>
-              <span>R$ 29,70</span>
-            </div>
-            <div>
-              <p>Entrega</p>
-              <span>R$ 3,50</span>
-            </div>
-            <div>
-              <p>Total</p>
-              <span>R$ 33,20</span>
-            </div>
-          </TotalOrders>
           <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
-        </CoffeeSelected>
+        </CoffeeSelectedContainer>
       </ColumnTwo>
     </Container>
   )
