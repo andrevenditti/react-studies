@@ -4,16 +4,20 @@ import { useCoffeeDeliveryCart } from '../../../context/CoffeeDeliveryContext'
 export function TotalOrders() {
   const { cartQuantity } = useCoffeeDeliveryCart()
 
+  const coffePrice = 9.9
+
   const deliveryValue = 3.5
 
-  const cartTotalValue = 9.9 * cartQuantity
+  const cartTotalValue = coffePrice * cartQuantity
   const shoppingTotalValue = cartTotalValue + deliveryValue
 
   return (
     <TotalOrdersContainer>
       <div>
         <p>Total de itens</p>
-        <span>R$ {cartTotalValue.toString().replace('.', ',')}</span>
+        <span>
+          {`R$ ${cartTotalValue.toString().replace('.', ',').padEnd(4, '0')}`}
+        </span>
       </div>
       <div>
         <p>Entrega</p>
@@ -21,7 +25,12 @@ export function TotalOrders() {
       </div>
       <div>
         <p>Total</p>
-        <span>R$ {shoppingTotalValue.toString().replace('.', ',')}</span>
+        <span>
+          {`R$ ${shoppingTotalValue
+            .toString()
+            .replace('.', ',')
+            .padEnd(4, '0')}`}
+        </span>
       </div>
     </TotalOrdersContainer>
   )

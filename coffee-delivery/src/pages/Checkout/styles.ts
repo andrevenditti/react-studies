@@ -50,7 +50,7 @@ export const AddressContainer = styled.div`
   }
 `
 
-export const FormDelivery = styled.form`
+export const FormDeliveryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1.6rem 1.2rem;
@@ -107,63 +107,6 @@ export const InputTextCidade = styled(BaseInput)`
 
 export const InputTextUf = styled(BaseInput)`
   width: 60px;
-`
-
-export const PaymentContainer = styled.div`
-  background: ${(props) => props.theme['base-card']};
-  padding: 40px;
-  margin-top: 15px;
-  border-radius: 6px;
-
-  header {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 32px;
-
-    svg {
-      color: ${(props) => props.theme['purple-dark']};
-    }
-
-    div {
-      flex-direction: column;
-
-      span {
-        color: ${(props) => props.theme['base-subtitle']};
-        font-size: 1.6rem;
-        line-height: 130%;
-        margin-bottom: 2px;
-        display: block;
-      }
-
-      p {
-        font-size: 1.4rem;
-        line-height: 130%;
-      }
-    }
-  }
-`
-
-export const PaymentOption = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 1.2rem;
-
-  div {
-    background: ${(props) => props.theme['base-button']};
-    padding: 16px;
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
-    flex: 1;
-
-    svg {
-      color: ${(props) => props.theme.purple};
-    }
-
-    span {
-      font-size: 1.2rem;
-    }
-  }
 `
 
 export const ColumnTwo = styled.div`
@@ -265,7 +208,12 @@ export const ButtonConfirm = styled.button`
 
   transition: 0.1s background-color;
 
-  :hover {
+  :not(:disabled):hover {
     background: ${(props) => props.theme['yellow-dark']};
+  }
+
+  :disabled {
+    background: ${(props) => props.theme['base-input']};
+    cursor: not-allowed;
   }
 `
